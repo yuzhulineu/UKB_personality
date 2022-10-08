@@ -1,0 +1,28 @@
+#!/bin/bash
+#PBS -N Curiosity
+#PBS -q workq
+#PBS -l nodes=1:ppn=2
+#PBS -k oe
+mkdir -p /share/inspurStorage/home1/Vinceyang/wbs_data/zrq_GWAS/result/british/
+
+path0='/share/inspurStorage/home1/Vinceyang/wbs_data/zrq_GWAS/'
+path1='/home1/Vinceyang/UKB_gene_v3_imp_qc/'
+path2=${path0}result/british/
+path3=${path0}/snp/
+
+#/home1/Vinceyang/wbs_data/british_id.txt: white british ethnic sample list
+for i in {1..22};
+do
+plink2 \
+--bfile ${path1}UKB_gene_v3_imp_qc_chr${i} \
+--keep /home1/Vinceyang/wbs_data/british_id.txt \
+--exclude ${path3}snp_chr${i}.txt \
+--glm hide-covar \
+--geno 0.05 \
+--maf 0.005 \
+--hwe 1e-6 \
+--pheno ${path0}data/zrq_pheno.txt \
+--pheno-col-nums 7 \
+--covar ${path0}data/zrq_cov.txt \
+--out ${path2}Curiosity/ukb_imp_chr${i}_head01 \
+;done

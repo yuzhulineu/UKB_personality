@@ -1,0 +1,6 @@
+#UKB_gene_v3_imp_qc_chr${i}: 
+This file was first filtered on the following criteria using the sample quality control file ‘ukb_sqc_v2.txt’provided by the UK Biobank:
+(1) used to compute principal components (‘used_in_pca_calculation’ column)
+(2) not marked as outliers for heterozygosity and missing rates (‘het_missing_outliers’ column)
+(3) do not show putative sex chromosome aneuploidy (‘putative_sex_chromosome_aneuploidy’ column)
+(4) have at most ten putative third-degree relatives (‘excess_relatives’ column).
